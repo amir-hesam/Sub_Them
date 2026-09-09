@@ -247,7 +247,79 @@
     }
     .icon-btn-sm svg { width: 16px; height: 16px; }
 
-    .footer { text-align: center; margin-top: 32px; color: var(--text-muted); font-size: 0.8rem; }
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .footer-box {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 74px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 0.3s ease, border-color 0.3s ease,
+                  box-shadow 0.3s ease, background 0.3s ease;
+      animation: footerFadeUp 0.65s ease both;
+    }
+
+    .footer-box:nth-child(2) { animation-delay: 0.1s; }
+
+    .footer-box::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(120deg, transparent 20%, rgba(99,102,241,.16) 50%, transparent 80%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .footer-box:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99,102,241,.55);
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+
+    .footer-box:hover::before { transform: translateX(100%); }
+
+    .footer-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--badge-bg);
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-box:hover .footer-icon { transform: scale(1.08) rotate(-4deg); }
+    .footer-icon svg { width: 22px; height: 22px; }
+
+    .footer-box-text { position: relative; z-index: 1; text-align: right; }
+    .footer-box-title { display: block; font-size: .95rem; font-weight: 700; margin-bottom: 2px; }
+    .footer-box-subtitle { display: block; color: var(--text-muted); font-size: .72rem; font-weight: 400; }
+
+    @keyframes footerFadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .theme-icon-light, .theme-icon-dark { display: none; }
     [data-theme="light"] .theme-icon-light { display: block; }
@@ -260,6 +332,10 @@
       .header-left { justify-content: flex-end; }
       .header-right { width: 100%; }
       .logo-wrap { width: 56px; height: 56px; }
+      .footer-links { grid-template-columns: 1fr; gap: 10px; margin-top: 26px; }
+      .footer-box { min-height: 68px; padding: 14px 16px; }
+      .footer-icon { width: 38px; height: 38px; flex-basis: 38px; }
+      .footer-icon svg { width: 20px; height: 20px; }
     }
   </style>
 </head>
@@ -434,8 +510,32 @@
       </div>
     </div>
 
-    <div class="footer"><a href="https://t.me/DynamicV2ray_bot">خرید از بات</a>
-    </div><div class="footer"><a href="https://t.me/Dynamic_Sup">پشتیبانی</a></div>
+    <div class="footer-links">
+      <a class="footer-box" href="https://t.me/DynamicV2ray_bot" target="_blank" rel="noopener noreferrer">
+        <span class="footer-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-3.3 0-6 2-6 4.5S8.7 17 12 17c.8 0 1.6-.1 2.2-.3L18 19v-3.1c1.2-.8 2-2 2-3.4C20 10 17.3 8 14 8h-2z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>
+          </svg>
+        </span>
+        <span class="footer-box-text">
+          <span class="footer-box-title">خرید از بات</span>
+          <span class="footer-box-subtitle">خرید و مدیریت سرویس</span>
+        </span>
+      </a>
+      <a class="footer-box" href="https://t.me/Dynamic_Sup" target="_blank" rel="noopener noreferrer">
+        <span class="footer-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 10c0 3.9-2.7 7-6 7-.9 0-1.7-.2-2.4-.5L6 18l.9-3A7.3 7.3 0 016 10c0-3.9 2.7-7 6-7s6 3.1 6 7z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 10h.01M12 10h.01M15 10h.01"/>
+          </svg>
+        </span>
+        <span class="footer-box-text">
+          <span class="footer-box-title">پشتیبانی</span>
+          <span class="footer-box-subtitle">ارتباط با پشتیبانی</span>
+        </span>
+      </a>
+    </div>
   </div>
 
   <script>
